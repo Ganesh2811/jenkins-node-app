@@ -5,5 +5,19 @@
     },
     "refreshKey": {
         "env": "REFRESH_SECRET_KEY"
-    } 
+    },
+    "database": {
+        "host": {
+            "env": "MYSQL_HOST"
+        },
+        "user": {
+            "env": "MYSQL_USER"
+        },
+        "password": {
+            "env": "MYSQL_PASSWORD"
+        },
+        "databaseName": {
+            "env": "MYSQL_DATABASE"
+        }
+    }
 }

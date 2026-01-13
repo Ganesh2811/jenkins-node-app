@@ -1,6 +1,7 @@
 require("dotenv");
 const jwt = require("jsonwebtoken");
-const tokenValidator = require("./auth/generateToken")
+const tokenValidator = require("./auth/generateToken");
+const db = require("./dao/dbConnection")
 const config = require("./config");
 
 const accessSecretKey = config.accessKey;
@@ -36,4 +37,11 @@ module.exports.verifyRefreshToken = (req, res, next, token) => {
 
         res.json({ accessToken: newAccess });
     });
+}
+
+module.exports.daoMiddleware = async (req, res, next) => {
+    req.db = await db.getConnection();
+    res.on("finish", function(){
+        db.releaseConnection(req.db);
+    })
 }
